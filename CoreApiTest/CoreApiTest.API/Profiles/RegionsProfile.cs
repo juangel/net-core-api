@@ -8,7 +8,9 @@ namespace CoreApiTest.API.Profiles
         {
             CreateMap<Models.Domain.Region, Models.DTO.Region>()
                 .ReverseMap();
-               // .ForMember(dest => dest.Id, options => options.MapFrom(src=>src.Id)); // Specify the mapping from one property to another
+            // .ForMember(dest => dest.Id, options => options.MapFrom(src=>src.Id)); // Specify the mapping from one property to another
+
+            CreateMap<Models.DTO.Region, Models.Domain.Region>();
         }
     }
 }
