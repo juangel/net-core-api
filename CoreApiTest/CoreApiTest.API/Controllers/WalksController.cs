@@ -110,5 +110,7 @@ namespace CoreApiTest.API.Controllers
 
             return Ok(walkDTO);
         }
+
+        
     }
 }

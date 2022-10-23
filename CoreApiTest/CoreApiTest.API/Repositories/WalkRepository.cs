@@ -21,7 +21,7 @@ namespace CoreApiTest.API.Repositories
             await nZWalksDbContext.SaveChangesAsync();
 
             return walk;
-        }
+        }       
 
         public async Task<Walk> DeleteAsync(Guid id)
         {
