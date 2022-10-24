@@ -43,6 +43,9 @@ namespace CoreApiTest.API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddWalkDifficultyAsync(Models.DTO.AddDifficultyRequest addDifficultyRequest)
         {
+            if (!(await ValidateAddWalkDifficultyAsync(addDifficultyRequest)))
+                return BadRequest(ModelState);
+
             // Convert DTO to Domain model
             var walkDifficultyDomain = new Models.Domain.WalkDifficulty
             {
@@ -89,5 +92,23 @@ namespace CoreApiTest.API.Controllers
 
             return Ok(walkDifficultyDTO);
         }
+
+        #region Validations
+        private async Task<bool> ValidateAddWalkDifficultyAsync(Models.DTO.AddDifficultyRequest addDifficultyRequest)
+        {
+            if (addDifficultyRequest == null)
+            {
+                ModelState.AddModelError(nameof(addDifficultyRequest.Code),
+                    $"{nameof(addDifficultyRequest.Code)} is required.");
+
+                return false;
+            }
+
+            if (ModelState.ErrorCount > 0)
+                return false;
+
+            return true;
+        }
+        #endregion
     }
 }
